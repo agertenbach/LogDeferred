@@ -26,6 +26,12 @@ We can't make the fully configured `ILogger` available during that first phase, 
 
 In addition to the ordinary `ILogger`, we can add some additional extensions that take advantage of the ability to inject composed dependencies without needing to instantiate explicit classes or validators in order to access state needed for logging at startup.
 
+### NuGet
+
+https://www.nuget.org/packages/LogDeferred/
+
+`dotnet add package LogDeferred`
+
 ### Example usage
 Consider the following (very contrived) example:
 
