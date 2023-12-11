@@ -101,7 +101,7 @@ With the deferred logging available from the start, I can get a better picture o
           Feature One is enabled
     info: MyApplication.Services.DatabaseProvider[0]
           Database provider is Local
-    info: MyApplication.Services.FeatureOne[0]
+    warn: MyApplication.Services.FeatureOne[0]
           Feature one doesn't have a valid connection string!
     info: MyApplication.Services.DatabaseProvider[0]
           Here is other useful DatabaseProvider information
@@ -159,6 +159,8 @@ For example:
     builder.Services.Configure<DatabaseOptions>(o => o.Mode = 2);
 
 will result in the log `Mode is 2` because both calls to `Configure` occur before the host starts and the value is computed.
+
+If the host fails to start, deferred logs will not be produced. If you must ensure that logs are recorded regarding the starting of the host, you should still consider bootstrapping a logger for immediate access.
 
 ### Customizing the default startup logger name
 Since the extensions are running against the `IServiceCollection` directly, we must specify a default logger category for any log events if a type parameter is not supplied. To keep the naming approximately consistent with other logging occurring as the host starts, we opted for "Microsoft.Hosting.Startup". 
